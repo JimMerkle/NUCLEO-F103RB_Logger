@@ -1,0 +1,35 @@
+Queue diagrams to visualize queue empty, queue full, unwrapped queue, wrapped queue.
+
+For these examples, use QUEUE_SIZE = 16 bytes, with 'H'ead and 'T'ail desigators
+'T' Represents empty location where new data will be added to queue
+'H' Represents filled location where where data will be removed (de-queued) from
+
+ Empty Queue  :  Head == Tail
+ Full Queue   :  Tail + 1 = Head  (after wrapping)
+ 
+     T
+   |00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|
+     H
+
+ Non-empty Queue.  Head != Tail, Unwrapped (T>H), quantity stored = T-H = 5
+ 
+                    T
+   |00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|
+     H
+
+ Non-empty Queue.  Head != Tail, Wrapped (H>T), quantity stored = QUEUE_SIZE-(H-T) = 16-(12-2) = 6
+ 
+           T
+   |00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|
+                                         H
+
+ Full Queue.  Head != Tail, Unwrapped (T>H), quantity stored = T-H = 15
+                                                  T
+   |00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|
+     H
+ 
+  Full Queue.  Head != Tail, Wrapped (H>T), quantity stored = QUEUE_SIZE-(H-T) = 16-(1) = 15
+                       T
+   |00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|
+                          H
+ 
