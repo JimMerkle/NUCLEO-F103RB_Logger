@@ -127,7 +127,7 @@ int main(void)
   //const char version[]={"VER 2.0.0\n"};
   //HAL_UART_Transmit(&huart2, (uint8_t *)version, strlen(version), 50);
   setvbuf(stdout, NULL, _IONBF, 0); // stdout is to be unbuffered
-  //printf("VER 2.0.0\n");
+  printf("VER 2.1.0\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -152,7 +152,7 @@ int main(void)
 //    logmsg("two");
 //    logmsg("thr");
 //    logmsg("fo");
-	const uint32_t _32bitnumber = 0x89ABCDEF;
+	//const uint32_t _32bitnumber = 0x89ABCDEF;
 	// Test: Record time to post 10 quantity - 50 byte (49+null) message, each with a '0X%08X' hex value
 	//               1         2         3         4         5         6         7         8         9         0         1         2         3
 	//      123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"); // 129 + Null
@@ -189,7 +189,7 @@ int main(void)
 	logmsg("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
 	uint16_t stop_us = TIM4->CNT; // read us hardware timer
-	logmsg("\n\nTime: %dus\n",stop_us-start_us);
+	logmsg("Time: %dus",stop_us-start_us);
 
 	// Test results #3:  375us to compose and queue 10 debug messages (no expansion within format string)
 	// 37.5 us each.  Test was performed with STM32F103RB at 72MHz.

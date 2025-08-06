@@ -131,18 +131,27 @@ uint16_t restart_dma(void) {
 // Prevent task switch while code proceeds though this function - a mutex comes to mind...
 int logmsg(const char *format, ...) {
 //=============================================================================
+	// For version 2.1.0, add time stamps to messages
+	// Allow "(265407628) " as an example prior to the message.
+	// Size of the timestamp changes as the target gets larger and larger values for HAL_GetTick()
 
 	//============================
 	// Grab mutex (required for concurrent clients writing into buffer(s))
 	//============================
 	va_list arg_ptr;
 	va_start(arg_ptr, format);
+
+	//
+	uint16_t ts_len = snprintf(_log_compose_buffer, LOG_MAX_TEXT, "(%ld) ",HAL_GetTick());
 	// This will truncate the data written to the string as expected (with NULL termination)
-	uint16_t log_length = vsnprintf(_log_compose_buffer, LOG_MAX_TEXT, format, arg_ptr);
+	uint16_t log_length = vsnprintf(&_log_compose_buffer[ts_len], LOG_MAX_TEXT-ts_len, format, arg_ptr);
 	// Convert length returned by vsnprintf() into actual length
 	if(log_length >= LOG_MAX_TEXT) log_length = LOG_MAX_TEXT-1;
 	// Add linefeed, \n, to the end
 	log_length+=1;
+	// Use log_length for total buffer data length
+	log_length += ts_len;
+
 	uint16_t log_space_available = (_queue_head <= _queue_tail)?    /* non-wrapped queue ? */
 			(LOG_DMA_BUFFER_SIZE - (_queue_tail - _queue_head) -1) :
 			(_queue_head - _queue_tail -1);
