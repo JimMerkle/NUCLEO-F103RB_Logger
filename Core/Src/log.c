@@ -141,8 +141,9 @@ int logmsg(const char *format, ...) {
 	va_list arg_ptr;
 	va_start(arg_ptr, format);
 
-	//
-	uint16_t ts_len = snprintf(_log_compose_buffer, LOG_MAX_TEXT, "(%ld) ",HAL_GetTick());
+	// To limit the number of digits printed for timestamp, a "manual method" is needed to limit size of the timestamp.
+	//   A printf() format string alone won't get us there.
+	uint16_t ts_len = snprintf(_log_compose_buffer, LOG_MAX_TEXT, "(%lu) ",HAL_GetTick());
 	// This will truncate the data written to the string as expected (with NULL termination)
 	uint16_t log_length = vsnprintf(&_log_compose_buffer[ts_len], LOG_MAX_TEXT-ts_len, format, arg_ptr);
 	// Convert length returned by vsnprintf() into actual length

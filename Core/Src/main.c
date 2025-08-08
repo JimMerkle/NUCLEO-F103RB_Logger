@@ -127,7 +127,7 @@ int main(void)
   //const char version[]={"VER 2.0.0\n"};
   //HAL_UART_Transmit(&huart2, (uint8_t *)version, strlen(version), 50);
   setvbuf(stdout, NULL, _IONBF, 0); // stdout is to be unbuffered
-  printf("VER 2.1.0\n");
+  printf("VER 2.1.1\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */

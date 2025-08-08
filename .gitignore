@@ -1,0 +1,5 @@
+# .gitignore for NUCLEO-F103RB_Logger project
+.settings/
+Debug/
+Release/
+

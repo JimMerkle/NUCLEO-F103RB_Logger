@@ -13,20 +13,23 @@ With attention to Small, Efficient, and minimally intrusive, implement a logger 
      "the wrap".
 
 ### Client Interface ###
+```
 The API, logmsg(const char *format, ...) accepts a prinf() formatted string.
-    Features implemented:
-    * Client adds a terminating line-feed at the end of each message.
-      (The terminating null character is replaced with a line feed '\n')
-    * Timestamps - HAL_GetTick() is used to record when logmsg() was called
-    Features not implemented:
-     * log level
-     * color
+Features implemented:
+* Client adds a terminating line-feed at the end of each message.
+  (The terminating null character is replaced with a line feed '\n')
+* Timestamps - HAL_GetTick() is used to record when logmsg() was called
+Features not implemented:
+* log level
+* color
+```
 
 ### Current Status ###
-
+```
 * This updated version, 2.1.0, manages most things well.
 
 ### Release Notes ###
-    2.1.0 : Added Timestamps - using HAL_GetTick()
-    2.0.0 : Initial release
-    Previous versions were never "released" / saved to GitHub
+2.1.0 : Added Timestamps - using HAL_GetTick()
+2.0.0 : Initial release
+Previous versions were never "released" / saved to GitHub
+```
